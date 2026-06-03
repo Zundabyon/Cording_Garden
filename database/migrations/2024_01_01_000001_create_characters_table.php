@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('slug')->unique();
             $table->string('name');
+            $table->string('name_kana')->nullable();
             $table->string('gender'); // female, male, mysterious
             $table->text('personality');
             $table->string('subject'); // php, laravel, html, css, js, typescript, vue, error
