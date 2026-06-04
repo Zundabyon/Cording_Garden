@@ -8,6 +8,7 @@ class GameSave extends Model
 {
     protected $fillable = [
         'user_id', 'current_day', 'day_of_week', 'phase', 'is_weekend',
+        'daily_study_count', 'current_study_character_id',
     ];
 
     protected $casts = [

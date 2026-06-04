@@ -41,13 +41,18 @@ class ActionController extends Controller
                 );
                 $affectionLevel = (int) floor($affection->level / 20);
                 $greeting = $character->getGreetingDialogue($affection->level);
+                // 勉強開始時にキャラIDを記録
+                if ($save) {
+                    $save->update(['current_study_character_id' => $character->id]);
+                }
                 return view('game.action-study', [
-                    'question' => $result['question'],
-                    'character' => $result['character'],
-                    'hp_cost' => $result['hp_cost'],
-                    'affection' => $affection,
-                    'affection_level' => $affectionLevel,
-                    'greeting' => $greeting,
+                    'question'            => $result['question'],
+                    'character'           => $result['character'],
+                    'hp_cost'             => $result['hp_cost'],
+                    'affection'           => $affection,
+                    'affection_level'     => $affectionLevel,
+                    'greeting'            => $greeting,
+                    'save_study_count'    => $save?->daily_study_count ?? 0,
                 ]);
 
             case 'rest':

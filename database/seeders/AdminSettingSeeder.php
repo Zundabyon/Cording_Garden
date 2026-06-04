@@ -19,6 +19,7 @@ class AdminSettingSeeder extends Seeder
             ['key' => 'hp_recovery_sleep', 'value' => '50', 'description' => '就寝時のHP回復量'],
             ['key' => 'game_start_date', 'value' => '2024-01-08', 'description' => 'ゲーム開始日（3学期始業式）'],
             ['key' => 'game_total_days', 'value' => '90', 'description' => 'ゲームの総日数'],
+            ['key' => 'daily_study_limit', 'value' => '5', 'description' => '1回の勉強セッションの問題数'],
         ];
 
         foreach ($settings as $setting) {

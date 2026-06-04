@@ -39,6 +39,87 @@ class DialogueService
         };
     }
 
+    // ===== 締めセリフ専用データ =====
+    public static function getClosing(string $slug, int $affection): array
+    {
+        $affection = max(0, min(100, $affection));
+        $data = static::closingDialogues($slug);
+
+        $keys = array_keys($data);
+        $floor = 0;
+        foreach ($keys as $k) {
+            if ($k <= $affection) {
+                $floor = $k;
+            }
+        }
+        return $data[$floor] ?? ['text' => 'お疲れ様でした。', 'expression' => 'normal'];
+    }
+
+    private static function closingDialogues(string $slug): array
+    {
+        return match($slug) {
+            'php' => [
+                0  => ['text' => '今日はここまでね。…ちゃんと復習しておきなさい。', 'expression' => 'cool'],
+                5  => ['text' => '今日分は終わりよ。解説はしっかり読んでおくこと。', 'expression' => 'cool'],
+                10 => ['text' => 'お疲れ様。また来てもいいわ。', 'expression' => 'normal'],
+                15 => ['text' => '今日もよく頑張ったわ。また来てちょうだい。', 'expression' => 'slight_smile'],
+                20 => ['text' => 'お疲れ様、明空くん。今日も頑張ったわね。また明日も来てね。', 'expression' => 'smile'],
+                25 => ['text' => '今日の5問、全部こなせたわ。あなたって意外と根性あるのね。', 'expression' => 'smile'],
+                30 => ['text' => '今日もよく頑張ったわ♪ …また明日、来てくれると嬉しいな。', 'expression' => 'happy'],
+                35 => ['text' => 'お疲れ！今日も一緒に頑張れてよかった。また明日もね。', 'expression' => 'happy'],
+                40 => ['text' => '今日の勉強おつかれ♡ …また来てね。待ってるから。', 'expression' => 'blush'],
+                45 => ['text' => '今日も5問終わったわ。…正直、あなたと一緒だと時間が早いの。', 'expression' => 'blush'],
+                50 => ['text' => 'お疲れ様♡ 今日も一緒に勉強できてよかった。明日も来てくれる？', 'expression' => 'love_hint'],
+                55 => ['text' => '今日分終わりね。…帰らないといけないのが、少し寂しいかも。', 'expression' => 'love_hint'],
+                60 => ['text' => 'お疲れ様♡ 今日もあなたと一緒に頑張れた。それだけで嬉しいの。', 'expression' => 'love'],
+                65 => ['text' => '今日も5問お疲れ様♡ …また明日、絶対来てね。待ってるから。', 'expression' => 'love'],
+                70 => ['text' => 'お疲れ様♡♡ 今日もありがとう。一緒にいる時間が、大切になってる。', 'expression' => 'deep_love'],
+                75 => ['text' => '今日もよく頑張ったわ♡ …帰り道、気をつけてね。ちゃんと帰るまで心配してるから。', 'expression' => 'deep_love'],
+                80 => ['text' => 'お疲れ♡♡ …毎日来てくれてありがとう。あなたのこと、大好きよ。', 'expression' => 'max_love'],
+                85 => ['text' => '今日も5問お疲れ様♡ …また明日会えるって思うと、帰り道も楽しくなりそうね。', 'expression' => 'max_love'],
+                90 => ['text' => 'お疲れ様♡♡♡ 今日も一緒にいてくれてありがとう。明空くん、大好きよ。', 'expression' => 'max_love'],
+                95 => ['text' => '今日もありがとう♡♡ …また明日、絶対来てね。来なかったら迎えに行くから。', 'expression' => 'max_love'],
+                100 => ['text' => '♡♡♡ お疲れ様、大好きな人。明日もずっと一緒にいてね。', 'expression' => 'max_love'],
+            ],
+            'laravel' => [
+                0  => ['text' => 'お疲れ様でした。また来てください。', 'expression' => 'elegant'],
+                5  => ['text' => '今日はここまでね。解説をよく読んでおいてちょうだい。', 'expression' => 'elegant'],
+                10 => ['text' => 'お疲れ様。少しずつ上達してるわ。また来てね。', 'expression' => 'normal'],
+                15 => ['text' => '今日もお疲れ様。また来てくれると嬉しいわ。', 'expression' => 'slight_smile'],
+                20 => ['text' => '今日もお疲れ様、明空くん。また明日ね。', 'expression' => 'smile'],
+                25 => ['text' => '今日の5問、よく頑張ったわ。また来てちょうだい。', 'expression' => 'smile'],
+                30 => ['text' => 'お疲れ様♪ 今日も一緒に勉強できて楽しかったわ。', 'expression' => 'happy'],
+                35 => ['text' => '今日もありがとう。…また来るでしょ？待ってるわよ。', 'expression' => 'happy'],
+                40 => ['text' => 'お疲れ様♡ …また明日、来てくれると嬉しいな。', 'expression' => 'blush'],
+                50 => ['text' => '今日も5問お疲れ様♡ …帰り道、気をつけてね。', 'expression' => 'love_hint'],
+                60 => ['text' => 'お疲れ様♡♡ 今日もあなたと一緒にいられてよかった。', 'expression' => 'love'],
+                70 => ['text' => '今日もありがとう♡ …あなたのそばにいると安心するの。また明日ね。', 'expression' => 'deep_love'],
+                80 => ['text' => 'お疲れ♡♡ …明空くん、大好きよ。また明日も来てね。', 'expression' => 'max_love'],
+                90 => ['text' => '今日も一緒にいてくれてありがとう♡♡♡ …大好き、明空くん。', 'expression' => 'max_love'],
+                100 => ['text' => '♡♡♡ お疲れ様。あなたといる時間が世界で一番幸せよ。また明日ね。', 'expression' => 'max_love'],
+            ],
+            'error' => [
+                0  => ['text' => 'ふん。今日はここまでだ。次もちゃんと来い。', 'expression' => 'stern'],
+                10 => ['text' => '今日分は終わりだ。…まあ、悪くなかったぞ。', 'expression' => 'normal'],
+                20 => ['text' => 'お疲れ。また来い。…来ないと困る。', 'expression' => 'slight_smile'],
+                30 => ['text' => '今日の問答、悪くなかったな。また来るか？', 'expression' => 'slight_smile'],
+                40 => ['text' => 'お疲れ。…来てよかったか？俺はそう思ってるぞ。', 'expression' => 'blush'],
+                50 => ['text' => '今日も5問終わったな。…お前がいると、なぜか落ち着く。また来い。', 'expression' => 'blush'],
+                60 => ['text' => 'お疲れ。…また明日も来い。待っている。', 'expression' => 'love_hint'],
+                70 => ['text' => '今日もよく頑張ったな。…俺はお前のことを誇りに思う。また明日。', 'expression' => 'love'],
+                80 => ['text' => 'お疲れ…。また明日も来てくれるか？お前が来ると、俺も頑張れる。', 'expression' => 'deep_love'],
+                90 => ['text' => '…今日もありがとな。また明日来い。待ってる。', 'expression' => 'max_love'],
+                100 => ['text' => '…お前がいると、俺も変われる気がする。また明日な。好きだ。', 'expression' => 'max_love'],
+            ],
+            default => [
+                0  => ['text' => '今日はここまで。お疲れ様！', 'expression' => 'normal'],
+                20 => ['text' => 'お疲れ様！また明日も頑張ろう。', 'expression' => 'smile'],
+                50 => ['text' => '今日も一緒に頑張れてよかった！また明日ね。', 'expression' => 'happy'],
+                80 => ['text' => '今日もありがとう♡ また明日も一緒にいようね。', 'expression' => 'love'],
+            ],
+        };
+    }
+
     // ===== 比比野 穂香（PHP） =====
     private static function phpDialogues(string $type): array
     {

@@ -28,7 +28,16 @@
                         @endfor
                     </div>
                     <span class="text-xs text-gray-500">{{ $affection ? $affection->getRelationshipLabel() : '初対面' }}</span>
-                    <span class="text-xs text-red-400 ml-auto">HP -{{ $hp_cost }}</span>
+                    <div class="ml-auto flex items-center gap-3">
+                        {{-- 問題カウンター --}}
+                        <div class="flex gap-1">
+                            @for($i = 1; $i <= 5; $i++)
+                            <div class="w-3 h-3 rounded-full {{ $i <= ($save_study_count ?? 0) ? 'bg-purple-400' : 'bg-gray-700' }}"></div>
+                            @endfor
+                        </div>
+                        <span class="text-xs text-gray-500">{{ ($save_study_count ?? 0) + 1 }}/5問</span>
+                        <span class="text-xs text-red-400">HP -{{ $hp_cost }}</span>
+                    </div>
                 </div>
 
                 {{-- セリフ本文（タイプライター風） --}}

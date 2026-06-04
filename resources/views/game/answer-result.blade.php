@@ -75,6 +75,14 @@
     </div>
     @endif
 
+    {{-- 問題カウンター --}}
+    <div class="flex justify-center items-center gap-2 mb-4">
+        @for($i = 1; $i <= ($study_limit ?? 5); $i++)
+        <div class="w-3 h-3 rounded-full {{ $i <= ($study_count ?? 0) ? 'bg-purple-400' : 'bg-gray-700' }}"></div>
+        @endfor
+        <span class="text-xs text-gray-500 ml-1">{{ $study_count ?? 0 }}/{{ $study_limit ?? 5 }}問</span>
+    </div>
+
     {{-- 次のアクション --}}
     <div class="flex gap-3 justify-center">
         <a href="{{ route('game.index') }}" class="btn-secondary px-6 py-3 text-sm">
