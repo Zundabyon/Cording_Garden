@@ -36,7 +36,13 @@ class QuestionController extends Controller
 
         $affectionGained = 0;
         if ($isCorrect) {
-            $gain = (int) AdminSetting::get('affection_per_correct_answer', 10);
+            // 難易度に応じた好感度上昇（最大3）
+            $baseGain = match($question->difficulty) {
+                1 => 1,
+                2 => 2,
+                3 => 3,
+                default => 1,
+            };
             $maxAffection = (int) AdminSetting::get('max_affection_per_character', 100);
 
             $affection = Affection::firstOrCreate(
@@ -44,7 +50,7 @@ class QuestionController extends Controller
                 ['level' => 0]
             );
 
-            $affectionGained = min($gain, $maxAffection - $affection->level);
+            $affectionGained = min($baseGain, $maxAffection - $affection->level);
             $affection->increment('level', $affectionGained);
 
             // Increase power stats based on character subject

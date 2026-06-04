@@ -11,7 +11,7 @@ class AdminSettingSeeder extends Seeder
     {
         $settings = [
             ['key' => 'max_affection_per_character', 'value' => '100', 'description' => 'キャラクターの最大好感度'],
-            ['key' => 'affection_per_correct_answer', 'value' => '10', 'description' => '正解時の好感度アップ量'],
+            ['key' => 'affection_per_correct_answer', 'value' => '1', 'description' => '正解時の好感度アップ量（難易度1=+1, 2=+2, 3=+3）'],
             ['key' => 'affection_per_wrong_answer', 'value' => '0', 'description' => '不正解時の好感度変化量'],
             ['key' => 'hp_cost_study', 'value' => '10', 'description' => '勉強時のHP消費'],
             ['key' => 'hp_cost_exercise', 'value' => '15', 'description' => '運動時のHP消費'],
