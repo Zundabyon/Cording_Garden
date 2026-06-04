@@ -60,12 +60,24 @@ class QuestionController extends Controller
             'answered_at' => now(),
         ]);
 
+        $affection = Affection::where('user_id', $user->id)
+            ->where('character_id', $question->character_id)
+            ->first();
+        $affectionLevel = (int) floor(($affection?->level ?? 0) / 20);
+        $character = $question->character;
+        $dialogue = $isCorrect
+            ? $character->getCorrectDialogue($affectionLevel)
+            : $character->getWrongDialogue($affectionLevel);
+
         return view('game.answer-result', [
             'question' => $question,
             'selected_answer' => $selectedAnswer,
             'is_correct' => $isCorrect,
             'affection_gained' => $affectionGained,
-            'character' => $question->character,
+            'character' => $character,
+            'affection' => $affection,
+            'affection_level' => $affectionLevel,
+            'dialogue' => $dialogue,
         ]);
     }
 

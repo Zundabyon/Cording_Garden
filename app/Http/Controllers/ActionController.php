@@ -35,10 +35,19 @@ class ActionController extends Controller
                 if (!$result['success']) {
                     return redirect()->route('game.index')->with('error', $result['message']);
                 }
+                $affection = \App\Models\Affection::firstOrCreate(
+                    ['user_id' => $user->id, 'character_id' => $character->id],
+                    ['level' => 0]
+                );
+                $affectionLevel = (int) floor($affection->level / 20);
+                $greeting = $character->getGreetingDialogue($affectionLevel);
                 return view('game.action-study', [
                     'question' => $result['question'],
                     'character' => $result['character'],
                     'hp_cost' => $result['hp_cost'],
+                    'affection' => $affection,
+                    'affection_level' => $affectionLevel,
+                    'greeting' => $greeting,
                 ]);
 
             case 'rest':
