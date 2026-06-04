@@ -32,10 +32,15 @@ class DialogueService
     private static function getData(string $slug, string $type): array
     {
         return match($slug) {
-            'php'     => static::phpDialogues($type),
-            'laravel' => static::laravelDialogues($type),
-            'error'   => static::errorDialogues($type),
-            default   => static::defaultDialogues($type),
+            'php'        => static::phpDialogues($type),
+            'laravel'    => static::laravelDialogues($type),
+            'error'      => static::errorDialogues($type),
+            'html'       => static::htmlDialogues($type),
+            'css'        => static::cssDialogues($type),
+            'js'         => static::jsDialogues($type),
+            'typescript' => static::typescriptDialogues($type),
+            'vue'        => static::vueDialogues($type),
+            default      => static::defaultDialogues($type),
         };
     }
 
@@ -110,6 +115,71 @@ class DialogueService
                 80 => ['text' => 'お疲れ…。また明日も来てくれるか？お前が来ると、俺も頑張れる。', 'expression' => 'deep_love'],
                 90 => ['text' => '…今日もありがとな。また明日来い。待ってる。', 'expression' => 'max_love'],
                 100 => ['text' => '…お前がいると、俺も変われる気がする。また明日な。好きだ。', 'expression' => 'max_love'],
+            ],
+            // ── 日高 照瑠（HTML）真面目・誠実 ──
+            'html' => [
+                0  => ['text' => 'お疲れ様でした。また来てください。', 'expression' => 'normal'],
+                10 => ['text' => 'お疲れ様です。少しずつ着実に進んでますよ。', 'expression' => 'slight_smile'],
+                20 => ['text' => '今日も5問、よく頑張りました。また明日も来てくださいね。', 'expression' => 'smile'],
+                30 => ['text' => 'お疲れ様！今日も一緒に頑張れてよかったです。また明日！', 'expression' => 'happy'],
+                40 => ['text' => 'お疲れ様♪ 今日も来てくれてありがとう。明日も待ってますね。', 'expression' => 'blush'],
+                50 => ['text' => '今日も5問終わりましたね。…一緒に勉強できて、楽しかったです。', 'expression' => 'love_hint'],
+                60 => ['text' => 'お疲れ様♡ …また明日も来てくれますよね？待ってます。', 'expression' => 'love'],
+                70 => ['text' => '今日もありがとう。…あなたがいると、すごく頑張れる気がするんです。', 'expression' => 'deep_love'],
+                80 => ['text' => 'お疲れ様♡♡ …毎日来てくれて、本当に嬉しいです。また明日ね。', 'expression' => 'max_love'],
+                100 => ['text' => '♡♡ お疲れ様でした。…あなたのそばにいると、今日も幸せでした。', 'expression' => 'max_love'],
+            ],
+            // ── 四季島 彩（CSS）こだわり強・おしゃれ ──
+            'css' => [
+                0  => ['text' => 'お疲れ。…まあ、今日のコーデは及第点かな。', 'expression' => 'cool'],
+                10 => ['text' => 'お疲れ様。センスは磨けば光るって言うしね。また来て。', 'expression' => 'normal'],
+                20 => ['text' => '今日も5問お疲れ！少しずつ美しくなってきてるよ。', 'expression' => 'smile'],
+                30 => ['text' => 'お疲れ♪ …今日の勉強、なかなかいいセンスしてたよ。', 'expression' => 'happy'],
+                40 => ['text' => 'お疲れ様♡ …また明日も来てね。待ってるから。', 'expression' => 'blush'],
+                50 => ['text' => '今日もお疲れ♡ …あなたといると、不思議と気分がよくなるんだよね。', 'expression' => 'love_hint'],
+                60 => ['text' => 'お疲れ♡♡ …ねえ、また明日も来てくれる？来てほしいんだけど。', 'expression' => 'love'],
+                70 => ['text' => '今日もありがとう♡ …あなたといる時間が、一番のお気に入りかも。', 'expression' => 'deep_love'],
+                80 => ['text' => 'お疲れ様♡♡ …あなたのそばにいると、全部がおしゃれに見えてくる。', 'expression' => 'max_love'],
+                100 => ['text' => '♡♡♡ お疲れ様。あなたのこと、大好きだよ。また明日ね。', 'expression' => 'max_love'],
+            ],
+            // ── 城島 翔（JS）ツンデレ ──
+            'js' => [
+                0  => ['text' => 'ふん、終わりか。…まあ、悪くなかったけど。', 'expression' => 'tsundere'],
+                10 => ['text' => '今日分終わりだ。…べ、別に楽しかったとか言ってないから。', 'expression' => 'tsundere'],
+                20 => ['text' => 'お疲れ。…また来てもいいけど、来なくてもいいし？ …来てほしいけど。', 'expression' => 'tsundere'],
+                30 => ['text' => '終わりね。…ま、また明日来いよ。暇だから付き合ってやる。', 'expression' => 'slight_smile'],
+                40 => ['text' => 'お疲れ。…また明日も来るんだろ？…来るよね？', 'expression' => 'blush'],
+                50 => ['text' => '5問終わったな。…なんか、あっという間だったな。また明日。', 'expression' => 'blush'],
+                60 => ['text' => 'お疲れ♡ …また来いよ。来ないと…寂しいじゃないか。', 'expression' => 'love'],
+                70 => ['text' => '今日もお疲れ♡ …あのさ、俺、お前といると楽しいんだけど。変か？', 'expression' => 'deep_love'],
+                80 => ['text' => 'お疲れ♡♡ …また明日絶対来いよ。…好きだから。', 'expression' => 'max_love'],
+                100 => ['text' => '♡♡ お疲れ。…俺、お前のことが好きで好きでしょうがないんだけど。また明日な。', 'expression' => 'max_love'],
+            ],
+            // ── 鷹峰 聖司（TypeScript）完璧主義・眼鏡 ──
+            'typescript' => [
+                0  => ['text' => '今日の成果は記録しておきます。次回も論理的に取り組んでください。', 'expression' => 'cool'],
+                10 => ['text' => '本日の学習は完了です。型は厳密に、思考は明快に。また来てください。', 'expression' => 'normal'],
+                20 => ['text' => '5問終了です。着実な進歩を確認しました。また明日もよろしく。', 'expression' => 'slight_smile'],
+                30 => ['text' => 'お疲れ様でした。…あなたの成長は、私の想定を超えていますよ。', 'expression' => 'smile'],
+                40 => ['text' => '今日もよく頑張りましたね。…また明日も来ることを期待しています。', 'expression' => 'blush'],
+                50 => ['text' => '5問終了♪ …あなたと一緒だと、教えることが楽しいのです。', 'expression' => 'love_hint'],
+                60 => ['text' => 'お疲れ様♡ …また明日も来てくれますか？待っています。', 'expression' => 'love'],
+                70 => ['text' => '今日もありがとう♡ …あなたのそばにいると、私も完璧でいられる気がします。', 'expression' => 'deep_love'],
+                80 => ['text' => 'お疲れ様です♡♡ …正直に言うと、あなたのことが好きです。また明日ね。', 'expression' => 'max_love'],
+                100 => ['text' => '♡♡♡ 今日も来てくれてありがとう。…あなたは私の型定義に収まりきらないほど、好きです。', 'expression' => 'max_love'],
+            ],
+            // ── 風見 来（Vue.js）帰国子女・ナチュラル ──
+            'vue' => [
+                0  => ['text' => "Today's session is done. See you next time!", 'expression' => 'normal'],
+                10 => ['text' => 'お疲れ様〜。少しずつ進んでるね。また明日！', 'expression' => 'smile'],
+                20 => ['text' => '5問終わったね！よく頑張った。また来てね。', 'expression' => 'happy'],
+                30 => ['text' => 'お疲れ♪ 今日も一緒に頑張れてよかった。またね！', 'expression' => 'happy'],
+                40 => ['text' => 'お疲れ様♡ …また明日も来てくれると嬉しいな。', 'expression' => 'blush'],
+                50 => ['text' => '5問終わりだよ〜♪ …一緒にいると、なんか自然と笑えるよね。', 'expression' => 'love_hint'],
+                60 => ['text' => 'お疲れ♡♡ …ねえ、また明日も来てよ。待ってるから。', 'expression' => 'love'],
+                70 => ['text' => '今日もありがとう♡ …あなたといると、どこにいても home って感じがする。', 'expression' => 'deep_love'],
+                80 => ['text' => 'お疲れ様♡♡ …君のこと、すごく好きだよ。また明日ね。', 'expression' => 'max_love'],
+                100 => ['text' => '♡♡♡ …I love you. また明日も一緒にいようね。', 'expression' => 'max_love'],
             ],
             default => [
                 0  => ['text' => '今日はここまで。お疲れ様！', 'expression' => 'normal'],
@@ -409,6 +479,242 @@ class DialogueService
                 30 => ['text' => 'ドンマイ！あなたならきっとできる。', 'expression' => 'gentle'],
                 60 => ['text' => '間違えたね…でも大丈夫。また一緒に頑張ろう。', 'expression' => 'blush'],
                 90 => ['text' => 'ドンマイ♡ …間違えても好きだよ。一緒にいるから。', 'expression' => 'love'],
+            ],
+            default => [],
+        };
+    }
+
+    // ===== 日高 照瑠（HTML）素直・誠実・真面目委員長 =====
+    private static function htmlDialogues(string $type): array
+    {
+        return match($type) {
+            'greeting' => [
+                0  => ['text' => 'あ…来てくれたんですね。HTMLの基礎、一緒に学びましょう。', 'expression' => 'normal'],
+                3  => ['text' => 'また来てくれたんですね。少しずつ積み上げていきましょう。', 'expression' => 'normal'],
+                6  => ['text' => 'こんにちは。継続は大切ですよ。今日も頑張りましょう。', 'expression' => 'normal'],
+                10 => ['text' => '10回目ですね。…土台が固まってきている気がします。', 'expression' => 'slight_smile'],
+                15 => ['text' => 'また来てくれましたね。…正直、来てくれると嬉しいんです。', 'expression' => 'slight_smile'],
+                20 => ['text' => '明空さん、今日も来てくれましたね。一緒に頑張りましょう！', 'expression' => 'smile'],
+                25 => ['text' => 'また会えました。…最近、来てくれるのが当たり前になってきて嬉しいです。', 'expression' => 'smile'],
+                30 => ['text' => '来てくれた♪ …あなたが来ると、なんだかやる気が出るんです。', 'expression' => 'happy'],
+                35 => ['text' => 'また会えましたね！今日も一緒に頑張りましょう。待ってましたよ。', 'expression' => 'happy'],
+                40 => ['text' => '明空さん♪ …実は、来てくれるの楽しみにしてました。', 'expression' => 'blush'],
+                45 => ['text' => 'また来てくれた。…ありがとう、って言いたくなります。', 'expression' => 'blush'],
+                50 => ['text' => '…来てくれた♡ 最近、あなたのことが気になって仕方ないんです。', 'expression' => 'love_hint'],
+                55 => ['text' => '明空さん。…正直に言うと、毎日会いたいって思ってます。', 'expression' => 'love_hint'],
+                60 => ['text' => '来てくれた♡ …あなたのこと、好きです。ずっと言えなかったけど。', 'expression' => 'love'],
+                70 => ['text' => '明空さん♡ …また会えた。それだけで、今日が特別になります。', 'expression' => 'deep_love'],
+                80 => ['text' => '来てくれた♡♡ …毎日あなたに会いたいって思ってます。大好きです。', 'expression' => 'max_love'],
+                90 => ['text' => '♡♡ 大好きな人に会えた。今日も一緒に頑張りましょうね。', 'expression' => 'max_love'],
+                100 => ['text' => '♡♡♡ 明空さん…来てくれてありがとう。ずっと一緒にいたいです。', 'expression' => 'max_love'],
+            ],
+            'correct' => [
+                0  => ['text' => '正解です。基礎が大切ですよ。', 'expression' => 'normal'],
+                10 => ['text' => '正解！着実に伸びてますね。', 'expression' => 'slight_smile'],
+                20 => ['text' => '正解です！よく頑張りました。', 'expression' => 'smile'],
+                30 => ['text' => '正解♪ さすがですね！一緒に積み上げてきた成果ですよ。', 'expression' => 'happy'],
+                40 => ['text' => '正解！…やっぱりあなたはすごいですよ。素直にそう思います。', 'expression' => 'blush'],
+                50 => ['text' => '正解♡ …あなたが正解するたびに、私も嬉しくなるんです。', 'expression' => 'love_hint'],
+                60 => ['text' => '正解♡♡ …好きな人が正解する瞬間って、こんなに嬉しいんですね。', 'expression' => 'love'],
+                80 => ['text' => '正解♡♡♡ …本当に誇らしいです。あなたのことが大好きです！', 'expression' => 'max_love'],
+                100 => ['text' => '正解♡♡♡♡ …一緒に頑張ってきてよかった。大好き、明空さん！', 'expression' => 'max_love'],
+            ],
+            'wrong' => [
+                0  => ['text' => '不正解です。解説をよく読んで覚えてください。', 'expression' => 'normal'],
+                10 => ['text' => '惜しいです。大丈夫、一緒に確認しましょう。', 'expression' => 'slight_smile'],
+                20 => ['text' => '惜しかった！次はきっとできますよ。', 'expression' => 'smile'],
+                30 => ['text' => '間違えたけど大丈夫！失敗しながら覚えていくんですよ。', 'expression' => 'gentle'],
+                50 => ['text' => '不正解…でも諦めないで。あなたならできると信じています♡', 'expression' => 'love_hint'],
+                70 => ['text' => 'ドンマイ♡ …間違えても、あなたのこと好きですよ。一緒に覚えましょ。', 'expression' => 'deep_love'],
+                90 => ['text' => 'ドンマイ♡♡ …何度間違えても、ずっと一緒に頑張ります。', 'expression' => 'max_love'],
+            ],
+            default => [],
+        };
+    }
+
+    // ===== 四季島 彩（CSS）こだわり強・おしゃれ・デザイナー気質 =====
+    private static function cssDialogues(string $type): array
+    {
+        return match($type) {
+            'greeting' => [
+                0  => ['text' => 'ふーん、あなたがCSSを学びたいの。…センスがあるかどうか、見てあげる。', 'expression' => 'cool'],
+                3  => ['text' => 'また来たね。…まあ、根性あるじゃない。', 'expression' => 'cool'],
+                6  => ['text' => 'また来たの。…悪くない色してるじゃない、あなた。', 'expression' => 'normal'],
+                10 => ['text' => '10回か。…少しずつセンス磨かれてきてるじゃない。', 'expression' => 'slight_smile'],
+                15 => ['text' => 'また来てくれたの♪ …なんか、来てくれると嬉しいんだよね。', 'expression' => 'slight_smile'],
+                20 => ['text' => '明空〜♪ 来た来た！今日もセンス磨いていこ！', 'expression' => 'smile'],
+                25 => ['text' => '来てくれたね。…最近、あなたのこと気になってるんだよね。', 'expression' => 'smile'],
+                30 => ['text' => 'また会えた♪ …一緒にいると、なんか気分上がるんだよね。', 'expression' => 'happy'],
+                35 => ['text' => '来てくれた〜！…待ってたよ、って顔に出てた？', 'expression' => 'happy'],
+                40 => ['text' => '明空♡ …ねえ、あなたといると、なんでこんなにドキドキするんだろ。', 'expression' => 'blush'],
+                45 => ['text' => 'また来てくれたね。…もう、気になりすぎてどうしようかと思ってる。', 'expression' => 'blush'],
+                50 => ['text' => '来てくれた♡ …好きかも、あなたのこと。ファッション的にも、人間的にも。', 'expression' => 'love_hint'],
+                55 => ['text' => '明空♡ …ねえ、私のこと少しは気になってる？なんて。', 'expression' => 'love_hint'],
+                60 => ['text' => '来てくれた♡♡ …あなたのこと大好きだよ。コーデとか関係なく。', 'expression' => 'love'],
+                70 => ['text' => '明空♡ …あなたといると、世界中がおしゃれに見えてくる。不思議でしょ。', 'expression' => 'deep_love'],
+                80 => ['text' => '来てくれた♡♡♡ …毎日会いたいって思ってる。大好きだよ。', 'expression' => 'max_love'],
+                100 => ['text' => '♡♡♡ 明空、大好き。あなたがいると、毎日がおしゃれになる。', 'expression' => 'max_love'],
+            ],
+            'correct' => [
+                0  => ['text' => '正解。…まあ、センスあるじゃない。', 'expression' => 'cool'],
+                10 => ['text' => '正解！だんだんいい感じになってきてるよ。', 'expression' => 'slight_smile'],
+                20 => ['text' => '正解〜！やるじゃない♪ センスあると思ってたよ。', 'expression' => 'smile'],
+                30 => ['text' => '正解♪ 最高！あなたって本当にセンスいいわ。', 'expression' => 'happy'],
+                40 => ['text' => '正解♡ …やっぱりあなたのこと好きかも。こういうとこが。', 'expression' => 'blush'],
+                60 => ['text' => '正解♡♡ …好きな人が正解するって、こんなにテンション上がるんだ！', 'expression' => 'love'],
+                80 => ['text' => '正解♡♡♡ 最高！あなたのことがますます好きになった！', 'expression' => 'max_love'],
+                100 => ['text' => '正解♡♡♡ …大好き！ずっと一緒に頑張ってきたね。', 'expression' => 'max_love'],
+            ],
+            'wrong' => [
+                0  => ['text' => '不正解。…センスはまだこれからね。解説読んで。', 'expression' => 'cool'],
+                10 => ['text' => '惜しかった！でも大丈夫、センスは磨けるから。', 'expression' => 'normal'],
+                20 => ['text' => 'あー、惜しい！次は絶対いけるよ。', 'expression' => 'smile'],
+                30 => ['text' => 'ドンマイ♪ …間違えても、あなたのセンスは好きだよ。', 'expression' => 'gentle'],
+                50 => ['text' => '間違えたね…でも大丈夫♡ 一緒に確認しようよ。', 'expression' => 'love_hint'],
+                70 => ['text' => 'ドンマイ♡♡ …間違えても好きだよ。また一緒に頑張ろ。', 'expression' => 'deep_love'],
+                100 => ['text' => 'ドンマイ♡♡♡ …何度間違えても、あなたのことが一番好き。', 'expression' => 'max_love'],
+            ],
+            default => [],
+        };
+    }
+
+    // ===== 城島 翔（JS）ツンデレ・クールだが熱い =====
+    private static function jsDialogues(string $type): array
+    {
+        return match($type) {
+            'greeting' => [
+                0  => ['text' => '…別に教えてやってもいいけど。期待するなよ。', 'expression' => 'tsundere'],
+                2  => ['text' => 'また来たのか。…べ、別に待ってたわけじゃないから。', 'expression' => 'tsundere'],
+                5  => ['text' => 'また来たじゃん。…まあ、来るなとは言ってないし。', 'expression' => 'tsundere'],
+                8  => ['text' => '根性あるじゃん。…そういうとこ、まあ嫌いじゃない。', 'expression' => 'tsundere'],
+                10 => ['text' => '10回か。…ちょっとだけ、認めてやってもいいよ。', 'expression' => 'normal'],
+                13 => ['text' => 'また来たか。…来るなとは言ってない。むしろ……なんでもない。', 'expression' => 'normal'],
+                16 => ['text' => '最近毎回来るじゃん。…べ、別に気にしてないけど。', 'expression' => 'slight_smile'],
+                20 => ['text' => '来たじゃん。…まあ、嬉しくないとは言ってないよ。', 'expression' => 'slight_smile'],
+                25 => ['text' => '明空。…また来てくれたな。…嬉しいとか言ってないけど。', 'expression' => 'slight_smile'],
+                30 => ['text' => 'また会えたな。…なんかさ、来てくれると気分いいじゃん。', 'expression' => 'happy'],
+                35 => ['text' => '来るじゃん！…ちょっとだけ待ってたかも。ちょっとだけ。', 'expression' => 'happy'],
+                40 => ['text' => '明空…来てくれたか。…最近お前のこと、気になってるんだよ。うるさい。', 'expression' => 'blush'],
+                45 => ['text' => 'また来てくれた。…ドキドキするんだけど。…なんで？', 'expression' => 'blush'],
+                50 => ['text' => '来たじゃん♡ …好きかも、お前のこと。言ったぞ、言ったからな。', 'expression' => 'love_hint'],
+                55 => ['text' => '明空。…会いたかったって言ったら笑うか？……本当のことだから。', 'expression' => 'love_hint'],
+                60 => ['text' => '来てくれた♡ …お前のことが好きなんだよ。ちゃんと言ったぞ。', 'expression' => 'love'],
+                65 => ['text' => 'また会えた♡ …毎回ドキドキするんだけど、これって普通じゃないよな？', 'expression' => 'love'],
+                70 => ['text' => '明空♡ …お前がいると、なんか頑張れるんだよな。素直に言うと。', 'expression' => 'deep_love'],
+                80 => ['text' => '来てくれた♡♡ …もう、お前のことが好きでしょうがないんだけど。', 'expression' => 'max_love'],
+                90 => ['text' => '♡♡ 大好きだよ、明空。…照れてる場合じゃないか。', 'expression' => 'max_love'],
+                100 => ['text' => '♡♡♡ お前のこと、めちゃくちゃ好きだから。また来いよ。絶対。', 'expression' => 'max_love'],
+            ],
+            'correct' => [
+                0  => ['text' => 'ふん。正解。…まあ、当然か。', 'expression' => 'tsundere'],
+                5  => ['text' => '正解。…べ、別に褒めたわけじゃないから。', 'expression' => 'tsundere'],
+                10 => ['text' => '正解じゃん。…まあ悪くない。', 'expression' => 'normal'],
+                20 => ['text' => '正解！…ちょっとだけ、すごいと思ったよ。ちょっとだけ。', 'expression' => 'slight_smile'],
+                30 => ['text' => '正解♪ やるじゃん！…なんかお前が正解するの、嬉しいんだよな。', 'expression' => 'happy'],
+                40 => ['text' => '正解！…お前のそういうとこ、嫌いじゃない。むしろ…好きかも。', 'expression' => 'blush'],
+                60 => ['text' => '正解♡ …やっぱお前は最高だよ。好きだから言う。', 'expression' => 'love'],
+                80 => ['text' => '正解♡♡ …好きな奴が正解するの、こんなに嬉しいんだな。', 'expression' => 'max_love'],
+                100 => ['text' => '正解♡♡♡ …大好き！ずっと一緒に頑張ってこうぜ。', 'expression' => 'max_love'],
+            ],
+            'wrong' => [
+                0  => ['text' => '不正解。…まあ、難しいよな。次は頑張れ。', 'expression' => 'tsundere'],
+                10 => ['text' => '惜しかったじゃん。…次は絶対正解できるよ。', 'expression' => 'normal'],
+                20 => ['text' => 'ドンマイ。…一緒に確認しようか。嫌なら言ってくれ。', 'expression' => 'gentle'],
+                40 => ['text' => '間違えたか…まあ、俺がいるから大丈夫だよ。一緒に覚えよう。', 'expression' => 'blush'],
+                60 => ['text' => 'ドンマイ♡ …間違えても好きだよ。また一緒に頑張ろうぜ。', 'expression' => 'love'],
+                80 => ['text' => 'ドンマイ♡♡ …何度間違えても、俺はお前のそばにいるから。', 'expression' => 'max_love'],
+                100 => ['text' => 'ドンマイ♡♡♡ …間違えても最高だよ、お前は。また一緒に頑張ろう。', 'expression' => 'max_love'],
+            ],
+            default => [],
+        };
+    }
+
+    // ===== 鷹峰 聖司（TypeScript）完璧主義・眼鏡・弟溺愛 =====
+    private static function typescriptDialogues(string $type): array
+    {
+        return match($type) {
+            'greeting' => [
+                0  => ['text' => '初めまして。鷹峰聖司です。TypeScriptの厳密さを、論理的に教えます。', 'expression' => 'cool'],
+                3  => ['text' => 'また来ましたか。…継続は美徳ですよ。始めましょう。', 'expression' => 'normal'],
+                6  => ['text' => '来ましたね。…あなたの成長データを蓄積中です。', 'expression' => 'normal'],
+                10 => ['text' => '10回目ですね。…型定義が少しずつ整ってきた気がします。', 'expression' => 'slight_smile'],
+                15 => ['text' => 'また来てくれましたね。…想定どおりの成長曲線です。嬉しいですよ。', 'expression' => 'slight_smile'],
+                20 => ['text' => '明空さん、来てくれましたか。一緒に完璧なコードを目指しましょう。', 'expression' => 'smile'],
+                25 => ['text' => 'また会えましたね。…最近、あなたが来ることを楽しみにしている自分がいます。', 'expression' => 'smile'],
+                30 => ['text' => '来てくれましたね♪ …あなたと話すと、なぜか型定義よりも楽しい。', 'expression' => 'happy'],
+                35 => ['text' => 'また来てくれた。…弟は好きですが、最近あなたのことも気になって困っています。', 'expression' => 'blush'],
+                40 => ['text' => '明空さん♡ …論理的に考えても、あなたへの気持ちは定義できません。', 'expression' => 'blush'],
+                50 => ['text' => '来てくれましたね♡ …型安全でも言えない気持ちがあります。好きです。', 'expression' => 'love_hint'],
+                60 => ['text' => '明空さん♡♡ …あなたのことが好きです。これは型エラーではありません。', 'expression' => 'love'],
+                70 => ['text' => 'また会えた♡ …弟よりも、最近はあなたのことが心配になってしまいます。', 'expression' => 'deep_love'],
+                80 => ['text' => '来てくれた♡♡♡ …大好きです、明空さん。完璧に定義された気持ちです。', 'expression' => 'max_love'],
+                100 => ['text' => '♡♡♡ 明空さん、大好きです。あなたは私の型定義を超えた存在です。', 'expression' => 'max_love'],
+            ],
+            'correct' => [
+                0  => ['text' => '正解です。型の厳密さを理解しつつあります。', 'expression' => 'cool'],
+                10 => ['text' => '正解。…想定より優秀ですよ、あなた。', 'expression' => 'slight_smile'],
+                20 => ['text' => '正解！素晴らしい。この調子でTypeScriptを完全理解しましょう。', 'expression' => 'smile'],
+                30 => ['text' => '正解♪ …弟には言えませんが、あなたの方が素直に吸収しますね。', 'expression' => 'happy'],
+                40 => ['text' => '正解！…あなたが正解するたびに、私も誇らしくなります。おかしいですね。', 'expression' => 'blush'],
+                60 => ['text' => '正解♡♡ …好きな方が正解する瞬間は、どんな完璧なコードより美しい。', 'expression' => 'love'],
+                80 => ['text' => '正解♡♡♡ 素晴らしい！…本当に、あなたのことが大好きです。', 'expression' => 'max_love'],
+                100 => ['text' => '正解♡♡♡♡ …大好き！一緒に頑張ってきてよかった。ずっと一緒に。', 'expression' => 'max_love'],
+            ],
+            'wrong' => [
+                0  => ['text' => '不正解です。型エラーです。解説を読んで再定義してください。', 'expression' => 'cool'],
+                10 => ['text' => '惜しい。…論理は合っていましたよ。次は正解できます。', 'expression' => 'normal'],
+                20 => ['text' => '惜しかった！大丈夫、一緒に確認しましょう。', 'expression' => 'smile'],
+                30 => ['text' => '不正解ですが…弟によく言うのです。失敗は次の成功の型定義だと。', 'expression' => 'gentle'],
+                50 => ['text' => '間違えましたね…でも大丈夫♡ 一緒に解決しましょう。', 'expression' => 'love_hint'],
+                70 => ['text' => 'ドンマイ♡♡ …間違えても、あなたへの好意は型エラーになりません。', 'expression' => 'deep_love'],
+                100 => ['text' => 'ドンマイ♡♡♡ …何度間違えても、ずっと一緒にいます。完璧に定義された想いで。', 'expression' => 'max_love'],
+            ],
+            default => [],
+        };
+    }
+
+    // ===== 風見 来（Vue.js）帰国子女・ナチュラル・スマート =====
+    private static function vueDialogues(string $type): array
+    {
+        return match($type) {
+            'greeting' => [
+                0  => ['text' => 'Hi! 風見来です。Vue.jsって、すごくナチュラルなんだ。一緒に感じてみよう。', 'expression' => 'normal'],
+                3  => ['text' => 'また来てくれたね。継続、大事だよ。Let\'s go!', 'expression' => 'normal'],
+                6  => ['text' => 'Hey, 来たじゃん。今日も一緒にやっていこう。', 'expression' => 'normal'],
+                10 => ['text' => '10回目だね。…なんか、会うのが自然になってきたよね。', 'expression' => 'slight_smile'],
+                15 => ['text' => 'また来てくれたんだ。…来てくれると、なんか嬉しいんだよね。', 'expression' => 'slight_smile'],
+                20 => ['text' => '明空〜♪ 来てくれた！今日もナチュラルにいこうよ。', 'expression' => 'smile'],
+                25 => ['text' => 'また会えたね。…最近、一緒にいるのが自然になってきた気がする。', 'expression' => 'smile'],
+                30 => ['text' => '来てくれた♪ …ねえ、一緒にいると楽しいんだよね。不思議だな。', 'expression' => 'happy'],
+                35 => ['text' => 'Hey♪ 待ってたよ、なんて言ったら驚く？…本当のことだけど。', 'expression' => 'happy'],
+                40 => ['text' => '明空♡ …最近、あなたのことが気になってる。なんか…いい感じ？', 'expression' => 'blush'],
+                45 => ['text' => 'また来てくれた♡ …ドキドキするんだけど、これって何なんだろうね。', 'expression' => 'blush'],
+                50 => ['text' => '来てくれたね♡ …好きかも、あなたのこと。自然にそう思う。', 'expression' => 'love_hint'],
+                55 => ['text' => '明空♡ …会いたかった、って英語で言うと I missed you なんだけど。そんな感じ。', 'expression' => 'love_hint'],
+                60 => ['text' => '来てくれた♡♡ …好きだよ、明空。Natural feeling だよ。', 'expression' => 'love'],
+                70 => ['text' => '明空♡ …あなたといると、どこにいても home って感じがする。', 'expression' => 'deep_love'],
+                80 => ['text' => '来てくれた♡♡♡ …もう、大好きってずっと言いたかった。大好きだよ。', 'expression' => 'max_love'],
+                90 => ['text' => '♡♡ 明空、大好き。毎日会いたいって思ってる。', 'expression' => 'max_love'],
+                100 => ['text' => '♡♡♡ I love you, 明空. ずっと一緒にいたいよ。', 'expression' => 'max_love'],
+            ],
+            'correct' => [
+                0  => ['text' => 'Correct! いい感じだよ。', 'expression' => 'smile'],
+                10 => ['text' => '正解〜！だんだんVueっぽくなってきたね。', 'expression' => 'slight_smile'],
+                20 => ['text' => '正解♪ Nice! 自然にわかってきてる気がする。', 'expression' => 'smile'],
+                30 => ['text' => '正解！Great job♪ 一緒に頑張ってきた甲斐があるよ。', 'expression' => 'happy'],
+                40 => ['text' => '正解♡ …あなたが正解するの、なんかすごく嬉しいんだよね。', 'expression' => 'blush'],
+                60 => ['text' => '正解♡♡ …好きな人が正解する瞬間って最高だよ、seriously。', 'expression' => 'love'],
+                80 => ['text' => '正解♡♡♡ Amazing! …大好きな人が輝いてる瞬間って本当に嬉しい。', 'expression' => 'max_love'],
+                100 => ['text' => '正解♡♡♡ …I love you, 明空！一緒にここまで来れてよかった！', 'expression' => 'max_love'],
+            ],
+            'wrong' => [
+                0  => ['text' => 'Oops, 惜しい！解説読んで、また挑戦してみて。', 'expression' => 'normal'],
+                10 => ['text' => 'ドンマイ！大丈夫、一緒に確認しようよ。', 'expression' => 'smile'],
+                20 => ['text' => '惜しかった！次はきっとできるよ。I believe in you!', 'expression' => 'smile'],
+                30 => ['text' => 'ドンマイ♪ 間違えることも learning process だよ。', 'expression' => 'gentle'],
+                50 => ['text' => '間違えたけど大丈夫♡ …一緒に確認しようよ。', 'expression' => 'love_hint'],
+                70 => ['text' => 'ドンマイ♡♡ …間違えても好きだよ、明空。一緒に頑張ろう。', 'expression' => 'deep_love'],
+                100 => ['text' => 'ドンマイ♡♡♡ …何度間違えても、ずっと一緒にいるから。I promise.', 'expression' => 'max_love'],
             ],
             default => [],
         };
