@@ -40,7 +40,7 @@ class ActionController extends Controller
                     ['level' => 0]
                 );
                 $affectionLevel = (int) floor($affection->level / 20);
-                $greeting = $character->getGreetingDialogue($affectionLevel);
+                $greeting = $character->getGreetingDialogue($affection->level);
                 return view('game.action-study', [
                     'question' => $result['question'],
                     'character' => $result['character'],

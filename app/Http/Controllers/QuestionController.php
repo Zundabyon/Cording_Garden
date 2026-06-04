@@ -65,9 +65,10 @@ class QuestionController extends Controller
             ->first();
         $affectionLevel = (int) floor(($affection?->level ?? 0) / 20);
         $character = $question->character;
+        $currentLevel = $affection?->level ?? 0;
         $dialogue = $isCorrect
-            ? $character->getCorrectDialogue($affectionLevel)
-            : $character->getWrongDialogue($affectionLevel);
+            ? $character->getCorrectDialogue($currentLevel)
+            : $character->getWrongDialogue($currentLevel);
 
         return view('game.answer-result', [
             'question' => $question,
