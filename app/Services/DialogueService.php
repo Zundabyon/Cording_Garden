@@ -37,6 +37,8 @@ class DialogueService
         return match($slug) {
             'php'        => static::phpDialogues($type),
             'laravel'    => static::laravelDialogues($type),
+            'ruby'       => static::rubyDialogues($type),
+            'rails'      => static::railsDialogues($type),
             'error'      => static::errorDialogues($type),
             'html'       => static::htmlDialogues($type),
             'css'        => static::cssDialogues($type),
@@ -184,6 +186,24 @@ class DialogueService
                 70 => ['text' => '今日もありがとう♡ …あなたといると、どこにいても home って感じがする。', 'expression' => 'deep_love'],
                 80 => ['text' => 'お疲れ様♡♡ …君のこと、すごく好きだよ。また明日ね。', 'expression' => 'max_love'],
                 100 => ['text' => '♡♡♡ …I love you. また明日も一緒にいようね。', 'expression' => 'max_love'],
+            ],
+            'ruby' => [
+                0  => ['text' => 'お疲れ様でした。また明日もいらっしゃってですわね。', 'expression' => 'elegant'],
+                10 => ['text' => 'お疲れ様ですわ。兄さんにも頑張ってるって言いますわ。', 'expression' => 'slight_smile'],
+                20 => ['text' => 'お疲れ様！また来てくださいですわね。', 'expression' => 'smile'],
+                30 => ['text' => 'お疲れ様ですわ♪ また明日も一緒ですわね！', 'expression' => 'happy'],
+                50 => ['text' => 'お疲れ様ですわ♡ 明日も待ってますわ。', 'expression' => 'love_hint'],
+                70 => ['text' => 'お疲れ様です♡ ずっと一緒にいてくださいですわね。', 'expression' => 'deep_love'],
+                100 => ['text' => '♡♡♡ ずっとずっと一緒ですわ。大好きですわ。', 'expression' => 'max_love'],
+            ],
+            'rails' => [
+                0  => ['text' => 'お疲れ様でした。…また来てくれますか？', 'expression' => 'smile'],
+                10 => ['text' => 'お疲れ様です。瑠璃花もきっと喜んでますよ…羨ましい…！', 'expression' => 'blush'],
+                20 => ['text' => 'お疲れ様でした。また来てくれることを待ってます。', 'expression' => 'gentle'],
+                30 => ['text' => 'お疲れ様！また明日も頑張ってくださいね。', 'expression' => 'happy'],
+                50 => ['text' => 'お疲れ様です♡ 明日も会えるって思うと嬉しいです。', 'expression' => 'love_hint'],
+                70 => ['text' => 'お疲れ様♡ 君といる時間、大切にしたいんです。', 'expression' => 'deep_love'],
+                100 => ['text' => '♡♡♡ ずっと一緒にいてください。君が全てです。', 'expression' => 'max_love'],
             ],
             default => [
                 0  => ['text' => '今日はここまで。お疲れ様！', 'expression' => 'normal'],
@@ -876,6 +896,324 @@ class DialogueService
                 50 => ['text' => '間違えたけど大丈夫♡ …一緒に確認しようよ。', 'expression' => 'love_hint'],
                 70 => ['text' => 'ドンマイ♡♡ …間違えても好きだよ、明空。一緒に頑張ろう。', 'expression' => 'deep_love'],
                 100 => ['text' => 'ドンマイ♡♡♡ …何度間違えても、ずっと一緒にいるから。I promise.', 'expression' => 'max_love'],
+            ],
+            default => [],
+        };
+    }
+
+    // ===== 赤川 瑠璃花（Ruby） =====
+    private static function rubyDialogues(string $type): array
+    {
+        return match($type) {
+            'greeting' => [
+                0 => [
+                    ['text' => 'あら、お初ですわ。わたくし赤川瑠璃花と申します。よろしくですわね。', 'expression' => 'elegant'],
+                    ['text' => 'あら、いらっしゃいましたですわ。Rubyをお教えしますわよ。', 'expression' => 'elegant'],
+                    ['text' => '座ってくださいですわ。今日も頑張りましょうですわね。', 'expression' => 'elegant'],
+                ],
+                10 => [
+                    ['text' => '10回ですか。…兄さんより丁寧に教えてくれてますわね。嬉しいですわ。', 'expression' => 'slight_smile'],
+                    ['text' => 'また来てくださったのですね。嬉しいですわ♪', 'expression' => 'slight_smile'],
+                    ['text' => 'あら、また来てくださった。兄さんよりも親切ですわ…失礼！', 'expression' => 'slight_smile'],
+                ],
+                20 => [
+                    ['text' => 'また来てくださったのですね。嬉しいですわ。今日も頑張りましょ。', 'expression' => 'smile'],
+                    ['text' => 'あら、いらっしゃい！今日も兄さんに頼らず来てくれたのですね。', 'expression' => 'smile'],
+                    ['text' => 'あらあら、また来てくださいました。わたくしも嬉しいですわ。', 'expression' => 'smile'],
+                ],
+                30 => [
+                    ['text' => 'いらっしゃい！今日も会えて嬉しいですわ♪ 兄さんにも今日のことお話しですわ。', 'expression' => 'happy'],
+                    ['text' => 'またお会いできましたですわ♪ 実はですね、会えるの楽しみにしてましたの。', 'expression' => 'happy'],
+                    ['text' => 'あら、今日も来てくださったですわね。…兄さんより嬉しいかもですわ。', 'expression' => 'happy'],
+                ],
+                40 => [
+                    ['text' => 'また来てくださったのですね♡ わたくし、嬉しいですわ。あなたのこと…', 'expression' => 'blush'],
+                    ['text' => 'あら…来てくださいました♡ 最近、あなたのことばかり考えてますわ…', 'expression' => 'blush'],
+                    ['text' => 'あら、来てくださった♡ わたくし、顔赤くなってますわね…恥ずかしい。', 'expression' => 'blush'],
+                ],
+                50 => [
+                    ['text' => '来てくださいました♡ ねえ…あなたのことがですわ…好きですわ。', 'expression' => 'love_hint'],
+                    ['text' => 'あら…実はですね、あなたのことが…好きなんですわ。', 'expression' => 'love_hint'],
+                    ['text' => 'あら♡ もう…隠しきれないですわ。あなたのこと大好きですわ。', 'expression' => 'love_hint'],
+                ],
+                60 => [
+                    ['text' => 'あなたのことが大好きですわ♡ はっきり申し上げてしまいました。', 'expression' => 'love'],
+                    ['text' => 'あなたのこと…大好きですわ♡ 兄さんよりもですわ…いえ、これはナイショですわ。', 'expression' => 'love'],
+                    ['text' => '会えるたびに…好きになりますわ♡ もう…どうしようもないですわ。', 'expression' => 'love'],
+                ],
+                70 => [
+                    ['text' => 'あなたといるお時間が、わたくしの一番の楽しみですわ♡ ずっと一緒ですわ。', 'expression' => 'deep_love'],
+                    ['text' => 'あなたのそばにいると…お心が穏やかになりますわ♡', 'expression' => 'deep_love'],
+                    ['text' => 'わたくしね…あなたのことが…本当に大切なんですわ♡', 'expression' => 'deep_love'],
+                ],
+                80 => [
+                    ['text' => 'お疲れ様でした♡♡ ずっと一緒にいてくださいですわ。', 'expression' => 'max_love'],
+                    ['text' => '今日もありがとうございますわ♡ あなたのこと…大好きですわ。', 'expression' => 'max_love'],
+                    ['text' => '♡♡ またお会いできましたですわ♪ もう…嬉しくてしょうがないですわ。', 'expression' => 'max_love'],
+                ],
+                100 => [
+                    ['text' => '♡♡♡ 大好きですわ。ずっとずっと一緒ですわね。', 'expression' => 'max_love'],
+                    ['text' => '♡♡♡ あなたが全てですわ。ずっとそばにいてくださいますですわ。', 'expression' => 'max_love'],
+                    ['text' => '♡♡♡ わたくし…あなたなしでは生きられませんですわ。ずっと一緒ですわね。', 'expression' => 'max_love'],
+                ],
+            ],
+            'correct' => [
+                0 => [
+                    ['text' => '正解ですわ。さすがですわね。', 'expression' => 'elegant'],
+                    ['text' => 'ふふ、正解ですわ。素晴らしいですわ。', 'expression' => 'elegant'],
+                    ['text' => '正解ですわ♪ よくできていますわ。', 'expression' => 'elegant'],
+                ],
+                10 => [
+                    ['text' => '正解ですわ！だんだん上手になってきてますわね。', 'expression' => 'slight_smile'],
+                    ['text' => '正解！…あら、こんなに自然に褒めてますわ…恥ずかしい。', 'expression' => 'slight_smile'],
+                    ['text' => 'ふふ、正解ですわ♪ やるじゃないですか。', 'expression' => 'slight_smile'],
+                ],
+                20 => [
+                    ['text' => '正解ですわ〜♪ よくできました！', 'expression' => 'smile'],
+                    ['text' => 'やりましたわ、正解！えらいえらい♪', 'expression' => 'smile'],
+                    ['text' => '完璧ですわ！その調子ですわよ♪', 'expression' => 'smile'],
+                ],
+                30 => [
+                    ['text' => '正解っ♪ あなたが正解するたびに、わたくしまで嬉しくなりますわ。', 'expression' => 'happy'],
+                    ['text' => '正解！すごいですわ〜♪ 本当に伸びてますわ。', 'expression' => 'happy'],
+                    ['text' => 'やったですわ！正解♪ 最高ですわ！', 'expression' => 'happy'],
+                ],
+                40 => [
+                    ['text' => '正解♡ …あなたが正解するの、本当に好きですわ。', 'expression' => 'blush'],
+                    ['text' => '正解ですわ♡ …あなた…本当に素敵ですわ。', 'expression' => 'blush'],
+                    ['text' => '正解！…ねえ、ちょっと抱きしめたくなりました。…失礼ですわね。', 'expression' => 'blush'],
+                ],
+                50 => [
+                    ['text' => '正解♡ あなたが正解するの…誇らしいですわ。', 'expression' => 'love_hint'],
+                    ['text' => '正解ですわ♡ …もう…あなたのこと本当に好きかもですわ。', 'expression' => 'love_hint'],
+                    ['text' => 'すごい、正解！わたくし…あなたのことが好きですわ♡', 'expression' => 'love_hint'],
+                ],
+                60 => [
+                    ['text' => '正解♡ もう…嬉しすぎてどうしましょ。ずっと一緒に頑張りたいですわ！', 'expression' => 'love'],
+                    ['text' => '正解です♡ あなたが正解するたびに…もっと好きになりますわ。', 'expression' => 'love'],
+                    ['text' => '正解ですわ♡ …あなたのこと…本当に大好きですわ。', 'expression' => 'love'],
+                ],
+                70 => [
+                    ['text' => '正解♡♡ あなたが正解するたびに…もっと好きになる感じですわ。', 'expression' => 'deep_love'],
+                    ['text' => 'すごい、正解！…本当に誇らしいですわ。わたくしの大切な人ですもの。', 'expression' => 'deep_love'],
+                    ['text' => '正解♡ …ねえ…本当に好きですわ。これはお勉強と関係ないお話ですわ。', 'expression' => 'deep_love'],
+                ],
+                80 => [
+                    ['text' => '正解♡♡♡ えらい！もう…今すぐハグしたいですわ♡', 'expression' => 'max_love'],
+                    ['text' => '正解！わたくしの大好きな人が正解するって…最高に嬉しいですわ♡', 'expression' => 'max_love'],
+                    ['text' => '正解ですわ♡♡ あなたのこと…もっともっと好きになっちゃいました！', 'expression' => 'max_love'],
+                ],
+                100 => [
+                    ['text' => '正解♡♡♡ わたくしね…あなたの全部が好きですわ。', 'expression' => 'max_love'],
+                    ['text' => '正解♡ …あなたが正解するたびに…愛してるって思いますわ。', 'expression' => 'max_love'],
+                    ['text' => 'やりました、正解ですわ♡♡♡ ずっと一緒にいてくれますですわね？', 'expression' => 'max_love'],
+                ],
+            ],
+            'wrong' => [
+                0 => [
+                    ['text' => '残念ですわ。もっと頑張ってくださいですわね。', 'expression' => 'stern'],
+                    ['text' => '不正解ですわ。解説をよくお読みになってくださいですわ。', 'expression' => 'stern'],
+                    ['text' => '惜しいですわが…違いますわ。次頑張ってくださいですわ。', 'expression' => 'stern'],
+                ],
+                10 => [
+                    ['text' => '惜しいですわ！でも違いますわね。解説をよくお読みになってください。', 'expression' => 'normal'],
+                    ['text' => '不正解ですわ。でも大丈夫、一緒に確認しましょうですわ。', 'expression' => 'normal'],
+                    ['text' => '違いますわね。でも惜しかったですわよ。次頑張ってくださいですわ。', 'expression' => 'normal'],
+                ],
+                20 => [
+                    ['text' => 'あら、間違えちゃいましたですわ。解説読んで…また挑戦してくださいですわ。', 'expression' => 'smile'],
+                    ['text' => '惜しかったですわ！でも大丈夫…次は絶対できますわ。', 'expression' => 'smile'],
+                    ['text' => '不正解ですわ…。でも諦めないでくださいですわ。あなたなら大丈夫ですわ。', 'expression' => 'smile'],
+                ],
+                30 => [
+                    ['text' => '違いますわね…。でも諦めないで。あなたなら覚えられますわ。', 'expression' => 'gentle'],
+                    ['text' => 'ドンマイですわ♪ 失敗してもいいのですわ。それが勉強ですもの。', 'expression' => 'gentle'],
+                    ['text' => '惜しかったですわね。解説一緒に読みましょうですわ。', 'expression' => 'gentle'],
+                ],
+                40 => [
+                    ['text' => '間違えちゃいましたですわね。…でもね、こういう時こそ一緒に考えたいですわ。', 'expression' => 'blush'],
+                    ['text' => '不正解ですわ…。でも…ね、一緒にもう一度確認しましょうですわ？', 'expression' => 'blush'],
+                    ['text' => '惜しかったですわ…♡ こういう時…そばにいたいって思いますわ。', 'expression' => 'blush'],
+                ],
+                50 => [
+                    ['text' => '違いますわ…。でも落ち込まないでくださいですわ。あなたのこと信じてますわ。', 'expression' => 'love_hint'],
+                    ['text' => '惜しいですわ！…ねえ…一緒に解説読みませんですか？二人で考えましょうですわ。', 'expression' => 'love_hint'],
+                    ['text' => '不正解ですわ…♡ でも大丈夫ですわ。わたくしがいますから。', 'expression' => 'love_hint'],
+                ],
+                60 => [
+                    ['text' => '不正解ですわ…♡ でも大丈夫…。あなたが諦めたら…わたくし…悲しいですわ。', 'expression' => 'love'],
+                    ['text' => '間違えちゃいましたですね…。でもわたくしはあなたを信じてますわ。ね…一緒に頑張りましょ。', 'expression' => 'love'],
+                    ['text' => '違うですわ…♡ でも…そばにいますから…大丈夫ですわ。', 'expression' => 'love'],
+                ],
+                70 => [
+                    ['text' => 'ドンマイですわ♡ 間違えても…あなたのこと好きですわ。一緒に覚えていきましょうですわ。', 'expression' => 'deep_love'],
+                    ['text' => '不正解ですわ…でも大丈夫♡ ずっと一緒ですわ。何度でも挑戦してくださいですわ。', 'expression' => 'deep_love'],
+                    ['text' => '違いますわ…♡♡ でも諦めないでくださいですわ。あなたなら絶対できますわ。', 'expression' => 'deep_love'],
+                ],
+                100 => [
+                    ['text' => '違いますわ…でも♡♡♡ あなたのことを諦めさせたりしないですわ。ずっと一緒ですわ。', 'expression' => 'max_love'],
+                    ['text' => 'ドンマイですわ♡♡ 間違えても…大好きですわ。また一緒に頑張りましょうですわ。', 'expression' => 'max_love'],
+                    ['text' => '不正解ですわ…♡♡♡ でも大丈夫。あなたのそばにいますわ。', 'expression' => 'max_love'],
+                ],
+            ],
+            default => [],
+        };
+    }
+
+    // ===== 赤川 怜瑠（Rails） =====
+    private static function railsDialogues(string $type): array
+    {
+        return match($type) {
+            'greeting' => [
+                0 => [
+                    ['text' => 'はじめまして。赤川怜瑠です。…瑠璃花が何かお世話になってませんか？妹のことで何かあれば…', 'expression' => 'smile'],
+                    ['text' => 'いらっしゃい。Railsを教えるけど…瑠璃花は？いや…いらっしゃいませ。', 'expression' => 'normal'],
+                    ['text' => 'あ、来ました。…瑠璃花にいじめられてないといいんですが…心配で…いや…さあ始めましょ。', 'expression' => 'blush'],
+                ],
+                10 => [
+                    ['text' => '10回ですか。…瑠璃花とはどんな勉強をしてるんですか？…羨ましい…っ！…ゴメン、大丈夫です。', 'expression' => 'blush'],
+                    ['text' => '10回も来てくれたんですね。瑠璃花、喜ぶだろうな…いや、こちらこそ感謝です。', 'expression' => 'gentle'],
+                    ['text' => 'また来てくれたんですね。…実は、毎日来るのを待ってたんです。…妹のためにです。', 'expression' => 'blush'],
+                ],
+                20 => [
+                    ['text' => 'また来てくれたんですね。…瑠璃花のことよろしくお願いします。っていうか、嫉妬…いや…何でもありません。', 'expression' => 'blush'],
+                    ['text' => '来てくれたんだ。瑠璃花のことをよく見てくれてるのかな…ありがとうございます。', 'expression' => 'gentle'],
+                    ['text' => 'また来ていただいて…ありがとうございます。妹もきっと喜んでます。…僕も。', 'expression' => 'smile'],
+                ],
+                30 => [
+                    ['text' => 'いらっしゃい。瑠璃花のこともよろしくお願いします。…最近、あなたのことばかり考えてます。…瑠璃花のことをです。', 'expression' => 'blush'],
+                    ['text' => '来てくれた。…実は、あなたに会いたくてずっと待ってたんです。妹のためじゃなくて…自分のために。', 'expression' => 'blush'],
+                    ['text' => 'また来てくれたんだ…♡ …正直に言うと、毎日のようにあなたのことばかり…妹のことばかり…混乱してます。', 'expression' => 'love_hint'],
+                ],
+                40 => [
+                    ['text' => '来てくれたんだ…♡ 実は…君が好きなんです。瑠璃花のことじゃなくて、君が。', 'expression' => 'blush'],
+                    ['text' => '来ていただいて嬉しいです♡ …正直に言うと…妹のことより…君のことが好きです。…最低ですね…ごめん。', 'expression' => 'blush'],
+                    ['text' => '君が来てくれるのを待ってました♡ …これは…妹とは関係ない…純粋な気持ちです。', 'expression' => 'love_hint'],
+                ],
+                50 => [
+                    ['text' => '君のこと…本当に大切なんです♡ 瑠璃花の面倒も…いや…そっちじゃなくて君が好きです！', 'expression' => 'love_hint'],
+                    ['text' => '君といると…心が落ち着くんです♡ …妹とは別の…特別な気持ちです。', 'expression' => 'love_hint'],
+                    ['text' => '来てくれてありがとうございます♡ …君のことが…本当に…大好きです。', 'expression' => 'love_hint'],
+                ],
+                60 => [
+                    ['text' => 'ずっと傍にいてくれませんか…？♡ 君のことが大好きです。', 'expression' => 'love'],
+                    ['text' => '君のことが大好きです…♡ 妹のシスコンじゃなくて…君への想い…本気です。', 'expression' => 'love'],
+                    ['text' => '君といると…完璧になれる気がします♡ …君のそばが…一番いい場所です。', 'expression' => 'love'],
+                ],
+                70 => [
+                    ['text' => 'いつも…ありがとうございます♡ 君といると…心が穏やかになるんです。', 'expression' => 'deep_love'],
+                    ['text' => 'ずっと一緒にいてください♡ …君がいてくれるから…僕は…生きていけるんです。', 'expression' => 'deep_love'],
+                    ['text' => 'あなたのそばが一番安心します♡ …妹よりも…君を選んでしまいそうで怖いです。', 'expression' => 'deep_love'],
+                ],
+                80 => [
+                    ['text' => 'お疲れ様です♡♡ 大好きな君と毎日会えるって…本当に幸せです。', 'expression' => 'max_love'],
+                    ['text' => '来てくれてありがとう♡♡ …君のことが…世界で一番…好きです。', 'expression' => 'max_love'],
+                    ['text' => '君のそばにいられるだけで♡♡ 僕は…全てを手に入れた気がします。', 'expression' => 'max_love'],
+                ],
+                100 => [
+                    ['text' => '♡♡♡ ずっと一緒にいてください。…君がいてくれるから…僕は完全でいられるんです。', 'expression' => 'max_love'],
+                    ['text' => '♡♡♡ …君が全てです。ずっと…ずっと…そばにいてください。', 'expression' => 'max_love'],
+                    ['text' => '♡♡♡ 君を愛してます。…妹よりも…世界中の誰よりも…君が好きです。', 'expression' => 'max_love'],
+                ],
+            ],
+            'correct' => [
+                0 => [
+                    ['text' => 'はい、正解です。いいですね。', 'expression' => 'smile'],
+                    ['text' => '正解ですね。いい調子です。', 'expression' => 'normal'],
+                    ['text' => 'その通り。正解です。', 'expression' => 'smile'],
+                ],
+                10 => [
+                    ['text' => '正解！…また正解されました。嬉しいです。妹も喜びますよ…羨ましい。', 'expression' => 'blush'],
+                    ['text' => '正解ですね。だんだん上達してきました。いいです…羨ましい…いや…。', 'expression' => 'blush'],
+                    ['text' => 'はい、正解！…あなたの成長…本当に素晴らしいです。', 'expression' => 'smile'],
+                ],
+                20 => [
+                    ['text' => '正解〜！よくできました♪ …あなたの頑張り…好きです。', 'expression' => 'smile'],
+                    ['text' => '正解です！すごい…すごく素敵です。', 'expression' => 'smile'],
+                    ['text' => 'やっぱり正解ですね。素晴らしい。その調子で…♪', 'expression' => 'smile'],
+                ],
+                30 => [
+                    ['text' => '正解っ♪ …あなたが正解するたびに…嬉しくなります。妹以上に…。', 'expression' => 'happy'],
+                    ['text' => '正解！…本当に嬉しいです。あなたの成長…全部見てましたよ。', 'expression' => 'happy'],
+                    ['text' => 'やりました！正解です♪ 最高です…あなたは…最高です。', 'expression' => 'happy'],
+                ],
+                40 => [
+                    ['text' => '正解♡ …あなたが正解するの…本当に好きです。この気持ち…何なんでしょう。', 'expression' => 'blush'],
+                    ['text' => '正解です♡ …あなたが正解するたびに…心がときめきます。', 'expression' => 'blush'],
+                    ['text' => '正解♡ …もう…あなたのこと…好きすぎて…困ってます…。', 'expression' => 'blush'],
+                ],
+                50 => [
+                    ['text' => '正解♡ …あなたが正解するの…本当に誇らしいです。君のために…。', 'expression' => 'love_hint'],
+                    ['text' => '正解です♡ …一緒に勉強してきてよかったって…思います。', 'expression' => 'love_hint'],
+                    ['text' => 'すごい、正解！♡ …もう…あなたのこと…本当に…。', 'expression' => 'love_hint'],
+                ],
+                60 => [
+                    ['text' => '正解♡ …もう…嬉しすぎてどうしよう。ずっと一緒に頑張ってきてよかった！', 'expression' => 'love'],
+                    ['text' => '正解です♡ …あなたが正解するたびに…もっと好きになります。', 'expression' => 'love'],
+                    ['text' => '正解♡ …あなことが…大好きです。これは…本気です。', 'expression' => 'love'],
+                ],
+                70 => [
+                    ['text' => '正解♡♡ …あなたが正解するたびに…もっと好きになるんです。', 'expression' => 'deep_love'],
+                    ['text' => 'すごい、正解です！…本当に…誇らしいです。君のことが…全てです。', 'expression' => 'deep_love'],
+                    ['text' => '正解♡ …ねえ…本当に好きです。この気持ち…もう隠せません。', 'expression' => 'deep_love'],
+                ],
+                80 => [
+                    ['text' => '正解♡♡♡ えらい！…もう…君を抱きしめたいくらいです。', 'expression' => 'max_love'],
+                    ['text' => '正解です！…大好きな君が正解するって…最高に嬉しいです。', 'expression' => 'max_love'],
+                    ['text' => '正解♡♡ 君…本当に素敵です。もっともっと好きになっちゃいました。', 'expression' => 'max_love'],
+                ],
+                100 => [
+                    ['text' => '正解♡♡♡ …君の全部が好きです。大好きです。', 'expression' => 'max_love'],
+                    ['text' => '正解♡ …君が正解するたびに…愛してるって思います。', 'expression' => 'max_love'],
+                    ['text' => 'やりました、正解♡♡♡ ずっと一緒にいてください…。', 'expression' => 'max_love'],
+                ],
+            ],
+            'wrong' => [
+                0 => [
+                    ['text' => 'そうですね…残念です。もっと頑張ってください。', 'expression' => 'stern'],
+                    ['text' => '不正解ですね。解説をよく読んでください。', 'expression' => 'stern'],
+                    ['text' => '惜しいですが…違いますね。次、頑張ってください。', 'expression' => 'stern'],
+                ],
+                10 => [
+                    ['text' => '惜しい！でも違いますね。解説をよく読んでください。', 'expression' => 'normal'],
+                    ['text' => '不正解です。でも大丈夫…一緒に確認しましょう。', 'expression' => 'normal'],
+                    ['text' => '違いますね。でも惜しかったです。次は頑張れます。', 'expression' => 'normal'],
+                ],
+                20 => [
+                    ['text' => 'あぁ、間違えちゃった。でも…解説読んでまた挑戦してください。', 'expression' => 'smile'],
+                    ['text' => '惜しかった！でも大丈夫…次は絶対できますよ。', 'expression' => 'smile'],
+                    ['text' => '不正解ですね…。でも諦めないで。あなたなら大丈夫です。', 'expression' => 'smile'],
+                ],
+                30 => [
+                    ['text' => '違いますね…。でも諦めないで。あなたなら覚えられます。', 'expression' => 'gentle'],
+                    ['text' => 'ドンマイですね♪ 失敗してもいいんです…それが勉強ですから。', 'expression' => 'gentle'],
+                    ['text' => '惜しかったですね。解説一緒に読みましょう。', 'expression' => 'gentle'],
+                ],
+                40 => [
+                    ['text' => '間違えちゃった…。でもね…こういう時…一緒に考えたいんです。', 'expression' => 'blush'],
+                    ['text' => '不正解ですね…。でも…一緒にもう一度確認しませんか？', 'expression' => 'blush'],
+                    ['text' => '惜しかった…♡ …こういう時…そばにいたいって思います。', 'expression' => 'blush'],
+                ],
+                50 => [
+                    ['text' => '違いますね…。でも落ち込まないでください。君のこと信じてますから。', 'expression' => 'love_hint'],
+                    ['text' => '惜しい！…ねえ…一緒に解説読みませんか？二人で考えましょう。', 'expression' => 'love_hint'],
+                    ['text' => '不正解ですね…♡ でも大丈夫です。僕がいますから。', 'expression' => 'love_hint'],
+                ],
+                60 => [
+                    ['text' => '不正解…♡ でも大丈夫。君が諦めたら…僕も…悲しいです。', 'expression' => 'love'],
+                    ['text' => '間違えちゃった…。でも君を信じてます。ね…一緒に頑張りましょう。', 'expression' => 'love'],
+                    ['text' => '違いますね…♡ でも…そばにいますから…大丈夫です。', 'expression' => 'love'],
+                ],
+                70 => [
+                    ['text' => 'ドンマイです♡ …間違えても…君のこと好きですよ。一緒に覚えていこう。', 'expression' => 'deep_love'],
+                    ['text' => '不正解ですね…でも大丈夫♡ ずっと一緒です。何度でも挑戦してください。', 'expression' => 'deep_love'],
+                    ['text' => '違いますね…♡♡ でも諦めないでください。君なら絶対できます。', 'expression' => 'deep_love'],
+                ],
+                100 => [
+                    ['text' => '違いますね…でも♡♡♡ 君のことを諦めさせたりしません。ずっと一緒です。', 'expression' => 'max_love'],
+                    ['text' => 'ドンマイです♡♡ …間違えても…大好きですよ。また一緒に頑張りましょう。', 'expression' => 'max_love'],
+                    ['text' => '不正解ですね…♡♡♡ でも大丈夫。君のそばにいます。', 'expression' => 'max_love'],
+                ],
             ],
             default => [],
         };

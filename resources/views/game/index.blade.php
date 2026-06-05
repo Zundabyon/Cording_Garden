@@ -15,11 +15,12 @@
 
         <div x-show="!showForm">
             <p class="text-gray-300 mb-6 text-sm leading-relaxed">
-                3学期が始まった。プログラミングが苦手な君は、<br>
-                PHP子先輩たちに出会い、コーディングを学んでいく——
+                高校２年生の３学期が始まった。プログラミングが苦手な君は、<br>
+                さまざまなキャラクターと出会い、思い出を紡ぎながらコーディングを学んでいく—— <br>
+                これは、そんな君の甘酸っぱい学園物語。
             </p>
             <button @click="showForm = true" class="btn-primary text-lg px-8 py-3">
-                🎮 ゲームスタート
+                ものがたりをはじめる
             </button>
         </div>
 

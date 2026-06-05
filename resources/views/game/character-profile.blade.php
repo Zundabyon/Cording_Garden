@@ -56,10 +56,23 @@
             </div>
 
             {{-- Description --}}
-            @if($character->description)
+            @php
+                $characterProfile = $character->getCharacterProfile();
+                $languageDesc = $character->getLanguageDescription();
+            @endphp
+
+            @if($characterProfile)
             <div class="glass-panel rounded-lg p-4 mb-4">
                 <h3 class="text-xs text-purple-400 mb-2">プロフィール</h3>
-                <p class="text-sm text-gray-300 leading-relaxed">{{ $character->description }}</p>
+                <p class="text-sm text-gray-300 leading-relaxed">{{ $characterProfile }}</p>
+            </div>
+            @endif
+
+            {{-- Language Description --}}
+            @if($languageDesc)
+            <div class="glass-panel rounded-lg p-4 mb-4 border-l-4 border-blue-500">
+                <h3 class="text-xs text-blue-400 mb-2">📚 {{ strtoupper($character->subject) }} について</h3>
+                <p class="text-sm text-gray-300 leading-relaxed">{{ $languageDesc }}</p>
             </div>
             @endif
 
@@ -71,20 +84,6 @@
             @endif
         </div>
     </div>
-
-    {{-- Actions --}}
-    @if($character->is_unlocked)
-    <div class="flex gap-3 justify-center">
-        <form method="POST" action="{{ route('game.action') }}">
-            @csrf
-            <input type="hidden" name="action" value="study">
-            <input type="hidden" name="character_slug" value="{{ $character->slug }}">
-            <button type="submit" class="btn-primary px-6 py-3">
-                📚 {{ $character->name }}と勉強する
-            </button>
-        </form>
-    </div>
-    @endif
 
     <div class="mt-4 text-center">
         <a href="{{ route('characters.index') }}" class="text-sm text-gray-500 hover:text-gray-400 transition">

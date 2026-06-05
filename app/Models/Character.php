@@ -36,6 +36,8 @@ class Character extends Model
         return match($this->subject) {
             'php' => 'from-purple-500 to-indigo-600',
             'laravel' => 'from-red-500 to-pink-600',
+            'ruby' => 'from-red-600 to-red-700',
+            'rails' => 'from-red-500 to-red-800',
             'html' => 'from-orange-500 to-red-500',
             'css' => 'from-blue-400 to-cyan-500',
             'js' => 'from-yellow-400 to-amber-500',
@@ -51,6 +53,8 @@ class Character extends Model
         return match($this->subject) {
             'php' => '🐘',
             'laravel' => '🔴',
+            'ruby' => '💎',
+            'rails' => '🚂',
             'html' => '📄',
             'css' => '🎨',
             'js' => '⚡',
@@ -59,6 +63,32 @@ class Character extends Model
             'error' => '⛔',
             default => '💻',
         };
+    }
+
+    // プロフィール部分を取得（言語説明を除く）
+    public function getCharacterProfile(): string
+    {
+        if (!$this->description) {
+            return '';
+        }
+        
+        $parts = explode('【言語について】', $this->description);
+        return trim($parts[0]);
+    }
+
+    // 言語説明部分を取得
+    public function getLanguageDescription(): ?string
+    {
+        if (!$this->description) {
+            return null;
+        }
+        
+        $parts = explode('【言語について】', $this->description);
+        if (count($parts) > 1) {
+            return trim($parts[1]);
+        }
+        
+        return null;
     }
 
     // 好感度(0-100)に応じた開始セリフ
