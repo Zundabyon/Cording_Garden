@@ -1,58 +1,123 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Cording Garden 🌸
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+プログラミング言語が美少女・美少年キャラクターに擬人化されたビジュアルノベル風学習ゲーム。  
+PHP/Laravelを遊びながら習得しつつ、キャラクターとの恋愛シミュレーションを楽しめる。
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## ゲーム概要
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **舞台**: 90日間の学校生活（3学期・1月8日〜）
+- **目標**: プログラミングを学びながらキャラクターと仲を深める
+- **ジャンル**: 恋愛シミュレーション × プログラミング学習
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### ゲームサイクル
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
-```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+```
+朝 → 午後 → 夜
+ └─ 勉強（5問）→ 好感度UP → 締めセリフ → 次のフェーズへ
+ └─ 休憩 / 外出 / 運動
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 登場キャラクター
 
-## Contributing
+| キャラ | モデル | 性格 |
+|---|---|---|
+| 比比野 穂香 | PHP | クール→ツンデレ、天才肌 |
+| 神宮寺 らら美 | Laravel | 優雅・上品、お嬢様系 |
+| 赤城 四朗 | Error | 無愛想→不器用な恋愛 |
+| 日高 照瑠 | HTML | 誠実・真面目、敬語系 |
+| 四季島 彩 | CSS | おしゃれ番長、センス重視 |
+| 城島 翔 | JS | ツンデレ弟系 |
+| 鷹峰 聖司 | TypeScript | 完璧主義・論理派 |
+| 風見 来 | Vue | 英日ミックス、自由奔放 |
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## 技術スタック
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- **バックエンド**: Laravel 13 / PHP 8.3
+- **フロントエンド**: Blade + Alpine.js + Tailwind CSS
+- **DB**: SQLite（開発） / MySQL 8.0（Docker）
+- **認証**: Laravel Breeze
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## セットアップ
 
-## License
+### ローカル（SQLite）
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+cp .env.example .env
+composer install
+npm install && npm run build
+php artisan key:generate
+php artisan migrate:fresh --seed
+php artisan serve
+```
+
+→ http://localhost:8000
+
+### Docker
+
+```bash
+bash docker/setup.sh
+```
+
+→ http://localhost:80
+
+初回セットアップ（`migrate:fresh --seed`）が自動実行される。  
+以降は `docker compose up -d` のみでOK。
+
+---
+
+## 管理画面
+
+`/admin` — 問題管理・キャラクター管理・ゲーム設定
+
+管理者アカウントはSeederで作成される（`is_admin = true`のユーザー）。
+
+---
+
+## ゲーム設定（AdminSetting）
+
+| キー | 初期値 | 説明 |
+|---|---|---|
+| `daily_study_limit` | 5 | 1セッションの問題数 |
+| `hp_cost_study` | 10 | 勉強のHP消費 |
+| `hp_recovery_rest` | 30 | 休憩のHP回復 |
+| `affection_per_correct_answer` | 1 | 正解時の好感度（×難易度） |
+| `max_affection_per_character` | 100 | 好感度上限 |
+
+---
+
+## 好感度システム
+
+- 難易度1問 → +1、難易度2問 → +2、難易度3問 → +3
+- 0〜100の好感度でセリフが変化（10点刻みで5バリアントからランダム選択）
+- 5問完了で締めセリフ → フェーズ進行
+
+---
+
+## ディレクトリ構成（主要部分）
+
+```
+app/
+├── Http/Controllers/
+│   ├── ActionController.php   # アクション処理（勉強・休憩・外出）
+│   ├── QuestionController.php # 回答処理・好感度更新
+│   └── Admin/                 # 管理画面
+├── Models/
+│   ├── Character.php          # キャラクターモデル
+│   ├── Affection.php          # 好感度モデル
+│   └── GameSave.php           # セーブデータ
+└── Services/
+    ├── DialogueService.php    # セリフ管理（全キャラ・全好感度）
+    └── GameService.php        # ゲームロジック
+
+resources/views/game/
+├── index.blade.php            # メイン画面
+├── action-study.blade.php     # 問題画面
+├── answer-result.blade.php    # 回答結果画面
+└── study-complete.blade.php   # 5問完了画面
+```
